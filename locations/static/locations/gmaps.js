@@ -36,12 +36,16 @@ function getAddressFromLatLng(latlng) {
 
 function handleReceivedLocation(result, location) {
     if (isAddressValid(result)) {
-        console.log(result.formatted_address);
-        console.log(result.types);
         var marker = new google.maps.Marker({
             position: location.latLng, 
             map: map
+        });        
+
+        var infowindow = new google.maps.InfoWindow({
+            content: result.formatted_address
         });
+        infowindow.open(map, marker);
+        
 
         saveLocation(location.latLng);
     }
