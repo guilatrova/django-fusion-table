@@ -1,4 +1,5 @@
-var startLocation = {lat: -23.533773, lng: -46.625290};
+const startLocation = {lat: -23.533773, lng: -46.625290};
+const validAddressTypes = ["street_address", "intersection", "point_of_interest ", "park"];
 var map;
 
 function initMap() {    
@@ -11,24 +12,18 @@ function initMap() {
 }
 
 function onMapClick(location) {
-    var marker = new google.maps.Marker({
-        position: location.latLng, 
-        map: map
-    });
-
     getAddressFromLatLng(location.latLng)
-        .then(addr => alert(addr))
-        .catch(err => alert('failed due ' + err));
+        .then((result) => handleReceivedLocation(result, location))
+        .catch(handleError);
 }
 
 function getAddressFromLatLng(latlng) {
     return new Promise((resolve, reject) => {
         var geocoder = new google.maps.Geocoder;
-        geocoder.geocode({'location': latlng}, function(results, status) {
+        geocoder.geocode({ location: latlng }, function(results, status) {
             if (status === 'OK') {
                 if (results[0]) {
-                    console.log(results);
-                    resolve(results[0].formatted_address);
+                    resolve(results[0]);
                 } 
                 
                 reject('ZERO_RESULTS');
@@ -38,3 +33,29 @@ function getAddressFromLatLng(latlng) {
         });
     });
 }
+
+function handleReceivedLocation(result, location) {
+    if (isAddressValid(result)) {
+        console.log(result.formatted_address);
+        console.log(result.types);
+        var marker = new google.maps.Marker({
+            position: location.latLng, 
+            map: map
+        });
+    }
+    else {
+        console.error('invalid');
+    }
+}
+
+function handleError(err) {
+    alert("You can't mark this location. We got an error: " + err);
+}
+
+function isAddressValid(result) {
+    const anyValidType = (element) => validAddressTypes.includes(element);
+    const isValid = result.types.some(anyValidType);
+
+    return isValid;
+}
+
