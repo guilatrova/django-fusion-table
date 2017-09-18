@@ -4,7 +4,7 @@ from locations import views
 list_actions = {
     'get': 'list', 
     'post': 'create',
-    # 'delete': 'destroy_all'
+    'delete': 'destroy_all'
 }
 
 single_action = {
