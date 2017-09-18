@@ -1,0 +1,9 @@
+{
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "python.linting.pylintEnabled": false,
+    "editor.minimap.enabled": false,
+    "python.pythonPath": "c:/Users/guilh/Desktop/Programming/Django/dj-gmaps/venv/scripts/python.exe",
+}
