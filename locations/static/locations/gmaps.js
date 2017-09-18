@@ -16,26 +16,25 @@ function onMapClick(location) {
         map: map
     });
 
-    var addr = getAddressFromLatLng(location.latLng);
-    alert(addr);
+    getAddressFromLatLng(location.latLng)
+        .then(addr => alert(addr))
+        .catch(err => alert('failed due ' + err));
 }
 
 function getAddressFromLatLng(latlng) {
-    var geocoder = new google.maps.Geocoder;
-    geocoder.geocode({'location': latlng}, function(results, status) {
-        if (status === 'OK') {
-            if (results[0]) {
-                // console.log(results);
-                // return results[0].formatted_address;
-                alert(results[0].formatted_address);
-            } 
+    return new Promise((resolve, reject) => {
+        var geocoder = new google.maps.Geocoder;
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    console.log(results);
+                    resolve(results[0].formatted_address);
+                } 
+                
+                reject('ZERO_RESULTS');
+            }
             
-            // return 'No results found';
-            alert('No results found');
-            return;
-        } 
-            
-        // return 'Geocoder failed due to: ' + status;
-        alert('Geocoder failed due to: ' + status);
+            reject(status);
+        });
     });
 }
