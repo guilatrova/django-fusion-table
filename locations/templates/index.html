@@ -1,5 +1,18 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block styles %}
+<link href="{% static "locations/index.css" %}" rel="stylesheet">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static "locations/gmaps.js" %}" rel="stylesheet"></script>
+{% endblock scripts %}
 
 {% block content %}
-CONTEUDO
+<div id="map"></div>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM4OZT_cpvwvDnCaC_65eB8apaAyjb4is&callback=initMap">
+</script>
 {% endblock content %}
