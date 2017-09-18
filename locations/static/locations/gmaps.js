@@ -1,5 +1,5 @@
 const startLocation = {lat: -23.533773, lng: -46.625290};
-const validAddressTypes = ["street_address", "intersection", "point_of_interest ", "park"];
+const validAddressTypes = ["route", "street_address", "intersection", "point_of_interest ", "park"];
 var map;
 
 function initMap() {    
@@ -42,6 +42,8 @@ function handleReceivedLocation(result, location) {
             position: location.latLng, 
             map: map
         });
+
+        saveLocation(location.latLng);
     }
     else {
         console.error('invalid');
