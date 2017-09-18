@@ -10,7 +10,14 @@
 {% endblock scripts %}
 
 {% block content %}
-<div id="map"></div>
+<div class="row full-viewport">
+    <div id="map"></div>
+
+</div>
+
+<div id="markers-added" class="row">
+    
+</div>
 
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM4OZT_cpvwvDnCaC_65eB8apaAyjb4is&callback=initMap">

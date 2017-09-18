@@ -58,4 +58,3 @@ function isAddressValid(result) {
 
     return isValid;
 }
-
