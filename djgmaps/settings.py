@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
    
-    'locations'
+    'locations',
+    'fusiontables'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,3 +130,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
 ]
+
+GOOGLE_API = 'AIzaSyCWz5_oXPmWYFg9yd6Ulux9xy9gwVjm4FU'
