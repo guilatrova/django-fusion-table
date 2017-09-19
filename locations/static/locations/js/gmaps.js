@@ -1,8 +1,8 @@
 const startLocation = {lat: -23.533773, lng: -46.625290};
 const validAddressTypes = ["route", "street_address", "intersection", "point_of_interest ", "park"];
+const tableId = '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
 var map;
 var layer;
-var tableId = '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
 
 function initMap() {    
     map = new google.maps.Map(document.getElementById('map'), {
