@@ -1,6 +1,8 @@
 const startLocation = {lat: -23.533773, lng: -46.625290};
 const validAddressTypes = ["route", "street_address", "intersection", "point_of_interest ", "park"];
 var map;
+var layer;
+var tableId = '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
 
 function initMap() {    
     map = new google.maps.Map(document.getElementById('map'), {
@@ -8,10 +10,10 @@ function initMap() {
         center: startLocation
     });
 
-    var layer = new google.maps.FusionTablesLayer({
+    layer = new google.maps.FusionTablesLayer({
         query: {
           select: '\'Location\'',
-          from: '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
+          from: tableId
         }
     });
     layer.setMap(map);
@@ -58,12 +60,22 @@ function handleReceivedLocation(result, location) {
         saveLocation(toSave);
     }
     else {
-        console.error('invalid');
+        handleError('Invalid location');
     }
 }
 
 function handleError(err) {
     alert("You can't mark this location. We got an error: " + err);
+}
+
+function refreshFusionTableLayer() {
+    layer.setOptions({
+        query: {
+            select: '\'Location\'',
+            from: tableId,
+            where: "location not equal to" + (-1 * Math.floor(Math.random() * 10000000)).toString() //Force refresh
+        }
+    });
 }
 
 function isAddressValid(result) {
