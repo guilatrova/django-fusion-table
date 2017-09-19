@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
    
     'locations',
-    'fusiontables'
 ]
 
 MIDDLEWARE_CLASSES = [

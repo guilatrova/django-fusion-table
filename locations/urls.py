@@ -12,6 +12,6 @@ single_action = {
 }
 
 urlpatterns = [
-    url(r'^$', views.LocationViewSet.as_view(list_actions), name='locations'),
+    url(r'^$',            views.LocationViewSet.as_view(list_actions), name='locations'),
     url(r'^(?P<pk>\d+)$', views.LocationViewSet.as_view(single_action), name='location')
 ]
