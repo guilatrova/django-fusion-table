@@ -24,7 +24,7 @@ function initMap() {
 function onMapClick(location) {
     getAddressFromLatLng(location.latLng)
         .then((result) => handleReceivedLocation(result, location))
-        .catch(handleError);
+        .catch((err) => displayMessageInLocation(location, err));
 }
 
 function getAddressFromLatLng(latlng) {
@@ -36,7 +36,7 @@ function getAddressFromLatLng(latlng) {
                     resolve(results[0]);
                 } 
                 
-                reject('ZERO_RESULTS');
+                reject('Invalid location');
             }
             
             reject(status);
@@ -46,26 +46,31 @@ function getAddressFromLatLng(latlng) {
 
 function handleReceivedLocation(result, location) {
     if (isAddressValid(result)) {
-        var marker = new google.maps.Marker({
-            position: location.latLng, 
-            map: map
-        });        
+        displayMessageInLocation(location, 'Added: ' + result.formatted_address);
 
-        var infowindow = new google.maps.InfoWindow({
-            content: result.formatted_address
-        });
-        infowindow.open(map, marker);
-        
         toSave = formatLocationToSave(result.formatted_address, location.latLng);
         saveLocation(toSave);
     }
     else {
-        handleError('Invalid location');
-    }
+        displayMessageInLocation(location, 'Invalid location');
+    }    
 }
 
-function handleError(err) {
-    alert("You can't mark this location. We got an error: " + err);
+function displayMessageInLocation(location, message) {
+    var marker = new google.maps.Marker({
+        position: location.latLng, 
+        map: map
+    });        
+
+    var infowindow = new google.maps.InfoWindow({
+        content: message
+    });
+    infowindow.open(map, marker);
+
+    setTimeout(() => {
+        marker.setMap(null);
+        infowindow.setMap(null);    
+    }, 2000);
 }
 
 function refreshFusionTableLayer() {
