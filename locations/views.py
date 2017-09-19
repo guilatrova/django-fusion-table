@@ -6,10 +6,10 @@ from locations.models import Location
 from locations.serializers import LocationSerializer
 from fusiontables.permissions import HasFusionTableCredentialsPermission, FusionTableNotExpiredPermission
 from fusiontables.factories import GoogleAuthFactory
-from fusiontables.decorators import handle_code_received, redirect_if_not_authorized, uses_authorized_service
+from fusiontables.decorators import handle_code_received, redirect_if_not_authorized_to, uses_authorized_service
 
 @handle_code_received
-@redirect_if_not_authorized
+@redirect_if_not_authorized_to('/auth/')
 def index(request):
     context = {
         'googleApiKey': GOOGLE_API_KEY

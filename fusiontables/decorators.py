@@ -2,18 +2,20 @@ from django.http import HttpResponseRedirect
 from djgmaps.settings import CREDENTIALS_KEY
 from fusiontables.factories import GoogleAuthFactory
 
-def redirect_if_not_authorized(func):
+def redirect_if_not_authorized_to(url):
     '''
     Checks if user has valid credentials to access FusionTable API.
-    If not, redirects to '/auth' endpoint.
+    If not, redirects to url received in args.
     Expects to receive a request object in *args.
     '''
-    def _wrapper(request):
-        if CREDENTIALS_KEY not in request.session:
-            return HttpResponseRedirect('/auth/')
-        return func(request)
+    def _outer_wrapper(func):
+        def _wrapper(request):
+            if CREDENTIALS_KEY not in request.session:
+                return HttpResponseRedirect(url)
+            return func(request)
 
-    return _wrapper
+        return _wrapper
+    return _outer_wrapper
 
 def handle_code_received(func):
     '''
