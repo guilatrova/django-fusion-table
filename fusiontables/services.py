@@ -12,11 +12,11 @@ class FusionTableService:
 
     def save_location(self, location):
         sql = "INSERT INTO {} (Address, Location) VALUES ('{}', '{},{}')".\
-            format(self.TABLE_ID, location['address'], location['lat'], location['lon'])
+            format(TABLE_ID, location['address'], location['lat'], location['lon'])
 
         return self.service.query().sql(sql=sql).execute()
 
     def clear_table(self):
-        sql = "DELETE FROM {}".format(self.TABLE_ID)
+        sql = "DELETE FROM {}".format(TABLE_ID)
 
         return self.service.query().sql(sql=sql).execute()
