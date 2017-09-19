@@ -38,3 +38,4 @@ def createsvc(code):
 
 def create_table(service):
     return service.create_table('test', 'none')['tableId']
+'''

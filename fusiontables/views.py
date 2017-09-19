@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from fusiontables.factories import GoogleAuthFactory
 
-# Create your views here.
+def auth(request):
+    googleAuth = GoogleAuthFactory()
+    url = googleAuth.build_authorization_url()
+    return HttpResponseRedirect(url)

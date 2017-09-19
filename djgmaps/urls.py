@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from locations.views import index
+from fusiontables import views
 
 urlpatterns = [
-    url(r'^$', 'locations.views.index'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', index),
+    url(r'^auth/$', views.auth),
     url(r'^api/locations/', include('locations.urls'))
 ]
