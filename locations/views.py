@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from djgmaps.settings import CREDENTIALS_KEY
+from djgmaps.settings import CREDENTIALS_KEY, GOOGLE_API_KEY
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from locations.models import Location
@@ -8,10 +8,13 @@ from fusiontables.permissions import HasFusionTableCredentialsPermission, Fusion
 from fusiontables.factories import GoogleAuthFactory
 from fusiontables.decorators import handle_code_received, redirect_if_not_authorized, uses_authorized_service
 
-@redirect_if_not_authorized
 @handle_code_received
+@redirect_if_not_authorized
 def index(request):
-    return render(request, 'index.html')
+    context = {
+        'googleApiKey': GOOGLE_API_KEY
+    }
+    return render(request, 'index.html', context)
 
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer

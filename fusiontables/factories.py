@@ -3,10 +3,6 @@ from oauth2client import client
 from apiclient.discovery import build
 from fusiontables.services import FusionTableService
 
-API = 'AIzaSyDEvQmQvSFTHflZDB-xtZTct7EBjYewBaw'
-CLIENT_ID = '259366732937-muj5ftopo9otfbgakhblsr8dbq7eidrn.apps.googleusercontent.com'
-SECRET_KEY = 'fPJddDe1YTItwgKSN0JabMI7'
-
 class GoogleAuthFactory:
     def __init__(self):
         self.flow = self.flow = client.flow_from_clientsecrets(

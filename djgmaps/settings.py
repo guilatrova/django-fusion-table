@@ -130,5 +130,10 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-GOOGLE_API = 'AIzaSyCWz5_oXPmWYFg9yd6Ulux9xy9gwVjm4FU'
 CREDENTIALS_KEY = 'google_credentials'
+TABLE_ID        = '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
+GOOGLE_API_KEY  = 'AIzaSyAM4OZT_cpvwvDnCaC_65eB8apaAyjb4is'
+
+API = 'AIzaSyDEvQmQvSFTHflZDB-xtZTct7EBjYewBaw'
+CLIENT_ID = '259366732937-muj5ftopo9otfbgakhblsr8dbq7eidrn.apps.googleusercontent.com'
+SECRET_KEY = 'fPJddDe1YTItwgKSN0JabMI7'

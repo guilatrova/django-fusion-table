@@ -1,7 +1,11 @@
-#DOCS: https://developers.google.com/resources/api-libraries/documentation/fusiontables/v1/python/latest/index.html
+from djgmaps.settings import TABLE_ID
 
-class FusionTableService:
-    TABLE_ID = '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
+class FusionTableService:    
+    '''
+    Handles requests and queries to Fusion Tables API.
+    Uses google api client, for more details check here:
+    https://developers.google.com/resources/api-libraries/documentation/fusiontables/v1/python/latest/index.html/ 
+    '''
 
     def __init__(self, google_service):
         self.service = google_service
