@@ -25,3 +25,16 @@ class GoogleAuthFactory:
         http_auth = credentials.authorize(httplib2.Http())
         service = build('fusiontables', 'v2', http=http_auth)
         return FusionTableService(service)
+
+'''
+google = GoogleAuthFactory()
+
+def test():
+    return google.build_authorization_url()
+
+def createsvc(code):
+    crd = google.build_credentials(code)
+    return google.build_service(crd)    
+
+def create_table(service):
+    return service.create_table('test', 'none')['tableId']
