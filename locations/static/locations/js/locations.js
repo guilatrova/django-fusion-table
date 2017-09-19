@@ -22,11 +22,23 @@ function formatLocationToSave(address, location) {
 }
 
 function saveLocation(location) {
-    $.post(BASE_URL, location, (data) => {
-        locations.push(data);
-        updateLocationsList();
-        refreshFusionTableLayer();
-    });    
+    $.post(BASE_URL, location)
+        .done((data) => {
+            locations.push(data);
+            updateLocationsList();
+            refreshFusionTableLayer();
+        })
+        .fail((err) => {            
+            alert("Sorry. We couldn't save this because: " + errToStr(err.responseJSON));
+        });
+}
+
+function errToStr(err) {
+    if (err['address'])
+        return err['address'];
+
+    if (err['detail'])
+        return err['detail'];
 }
 
 function retrieveLocations() {
