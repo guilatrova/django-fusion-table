@@ -5,6 +5,7 @@ from locations.models import Location
 from locations.serializers import LocationSerializer
 
 def index(request):
+    request.session['google_auth_code'] = request.GET.get('code', None)
     return render(request, 'index.html')
 
 class LocationViewSet(viewsets.ModelViewSet):
