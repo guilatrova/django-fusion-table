@@ -132,3 +132,4 @@ STATICFILES_DIRS = [
 ]
 
 GOOGLE_API = 'AIzaSyCWz5_oXPmWYFg9yd6Ulux9xy9gwVjm4FU'
+CREDENTIALS_KEY = 'google_credentials'

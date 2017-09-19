@@ -14,28 +14,18 @@ class GoogleAuthFactory:
             scope='https://www.googleapis.com/auth/fusiontables',
             redirect_uri='http://localhost:8000'
         )
+        self.flow.params['access_type'] = 'offline'
+        self.flow.params['include_granted_scopes'] = 'true'
 
     def build_authorization_url(self):
         return self.flow.step1_get_authorize_url()
 
     def build_credentials(self, code):
-        return self.flow.step2_exchange(code)
+        credentials = self.flow.step2_exchange(code)
+        return credentials.to_json()
     
-    def build_service(self, credentials):
+    def build_service(self, credentialsSession):
+        credentials = client.OAuth2Credentials.from_json(credentialsSession)
         http_auth = credentials.authorize(httplib2.Http())
         service = build('fusiontables', 'v2', http=http_auth)
         return FusionTableService(service)
-
-'''
-google = GoogleAuthFactory()
-
-def test():
-    return google.build_authorization_url()
-
-def createsvc(code):
-    crd = google.build_credentials(code)
-    return google.build_service(crd)    
-
-def create_table(service):
-    return service.create_table('test', 'none')['tableId']
-'''

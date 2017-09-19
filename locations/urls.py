@@ -8,9 +8,7 @@ list_actions = {
 }
 
 single_action = {
-    'get': 'retrieve',
-    'put': 'update',
-    'delete': 'destroy'
+    'get': 'retrieve'
 }
 
 urlpatterns = [
