@@ -6,7 +6,15 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: startLocation
-    });    
+    });
+
+    var layer = new google.maps.FusionTablesLayer({
+        query: {
+          select: '\'Location\'',
+          from: '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
+        }
+    });
+    layer.setMap(map);
     
     map.addListener('click', onMapClick);
 }
@@ -46,7 +54,6 @@ function handleReceivedLocation(result, location) {
         });
         infowindow.open(map, marker);
         
-
         toSave = formatLocationToSave(result.formatted_address, location.latLng);
         saveLocation(toSave);
     }
