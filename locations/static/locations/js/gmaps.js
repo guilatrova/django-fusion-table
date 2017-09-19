@@ -47,7 +47,8 @@ function handleReceivedLocation(result, location) {
         infowindow.open(map, marker);
         
 
-        saveLocation(location.latLng);
+        toSave = formatLocationToSave(result.formatted_address, location.latLng);
+        saveLocation(toSave);
     }
     else {
         console.error('invalid');

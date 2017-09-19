@@ -2,12 +2,12 @@
 {% load staticfiles %}
 
 {% block styles %}
-<link href="{% static "locations/index.css" %}" rel="stylesheet">
+<link href="{% static "locations/css/index.css" %}" rel="stylesheet">
 {% endblock styles %}
 
 {% block scripts %}
-<script src="{% static "locations/locations.js" %}" rel="stylesheet"></script>
-<script src="{% static "locations/gmaps.js" %}" rel="stylesheet"></script>
+<script src="{% static "locations/js/locations.js" %}" rel="stylesheet"></script>
+<script src="{% static "locations/js/gmaps.js" %}" rel="stylesheet"></script>
 {% endblock scripts %}
 
 {% block content %}
@@ -17,13 +17,21 @@
 </div>
 
 <div class="row">
-    <h1>Locations</h1>
+    <h1>Locations <button type="button" class="btn btn-danger" onclick="resetLocations()">Reset data</button></h1>
 </div>
 
 <div id="markers-added" class="row">
-    <ol>
-        
-    </ol>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Latitudade</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody>            
+        </tbody>
+    </table>
 </div>
 
 <script async defer

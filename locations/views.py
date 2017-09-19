@@ -11,6 +11,7 @@ def index(request):
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
     queryset = Location.objects.all()
+    authentication_classes = []
 
     def destroy_all(self, request):
         self.queryset.delete()
