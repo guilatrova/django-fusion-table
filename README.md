@@ -5,10 +5,10 @@
 A simple project which handles locations in Google Maps while manipulating data in database and Google Fusion Tables.
 It basically: 
 
-- Validates if you locations is valid (not a wood/mountain/ocean area)
-- Save lat, lon and addres both to Database as Google Fusion Tables
+- Validates if your location is valid (not a wood/mountain/ocean area)
+- Save lat, lon and addres both to database as Google Fusion Tables
 
-But you also can reset both data, lists data saved in database, view in maps your locations retrieved from Fusion Tables.
+But you also can: reset both data, lists data from database, view your locations in maps retrieved from Fusion Tables.
 
 **Warning** This project uses some **ES6 stuff**. It don't uses Angular/React/Webpack/Babel to avoid over-engineering and keep it simple.
 
@@ -51,7 +51,7 @@ Handle Google Maps stuff like:
 
 Handle API stuff like:
 - Save location
-- Retrive locations
+- Retrieve locations
 - Display locations in table
 - Reset locations
 - Display error message
@@ -59,7 +59,7 @@ Handle API stuff like:
 # Run it (Windows)
 
 ```
-git clone https://github.com/guilatrova/django-fusion-table
+git clone https://github.com/guilatrova/django-fusion-table.git          
 virtualenv .ve
 .ve\scripts\activate
 pip install -r requirements.txt
