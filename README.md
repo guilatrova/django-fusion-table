@@ -33,7 +33,7 @@ It requires:
 
 ## `locations` app
 
-This app implements models and uses service from above module. Note how it's **higly decoupled** from it. You will find only a bind with decorators in `views.py` which handles requests to default module and uses service provided by `fusiontables`.
+This app implements models and uses service from above module. Note how it's **higly decoupled** from it. You will find only a bind with decorators and permissions in `views.py` which handles requests to default module and uses service provided by `fusiontables`.
 
 ## Scripts
 

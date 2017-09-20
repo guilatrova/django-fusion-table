@@ -1,11 +1,11 @@
+from django.db import transaction
 from django.shortcuts import render
-from djgmaps.settings import CREDENTIALS_KEY, GOOGLE_API_KEY
+from djgmaps.settings import GOOGLE_API_KEY
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from locations.models import Location
 from locations.serializers import LocationSerializer
 from fusiontables.permissions import HasFusionTableCredentialsPermission, FusionTableNotExpiredPermission
-from fusiontables.factories import GoogleAuthFactory
 from fusiontables.decorators import handle_code_received, redirect_if_not_authorized_to, uses_authorized_service
 
 @handle_code_received
@@ -22,15 +22,16 @@ class LocationViewSet(viewsets.ModelViewSet):
     authentication_classes = []
     permission_classes = [HasFusionTableCredentialsPermission, FusionTableNotExpiredPermission]    
 
+    @transaction.atomic
     @uses_authorized_service
     def destroy_all(self, request, service):
-        service.clear_table()
         self.queryset.delete()
+        service.clear_table()
 
         return Response(status=status.HTTP_204_NO_CONTENT)    
 
+    @transaction.atomic
     @uses_authorized_service
     def perform_create(self, serializer, service):        
-        service.save_location(serializer.validated_data)
-
         super(LocationViewSet, self).perform_create(serializer)
+        service.save_location(serializer.validated_data)
