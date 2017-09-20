@@ -132,4 +132,4 @@ STATICFILES_DIRS = [
 
 CREDENTIALS_KEY = 'google_credentials'
 TABLE_ID        = '1hIFxlOCg1zPTwrc9Mgo0-q5__PnmLdcVnDnGLYRW'
-GOOGLE_API_KEY  = 'AIzaSyAM4OZT_cpvwvDnCaC_65eB8apaAyjb4is'
+GOOGLE_API_KEY  = 'AIzaSyAuaHtWTBuBcQgezqJPY6fiLM8bOPSce3s'
